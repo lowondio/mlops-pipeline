@@ -56,15 +56,8 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Сборка и пуш Docker-образа
-      uses: docker/build-push-action@v5
-      with:
-        context: .
-        push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/my_ml_pipeline:latest
-
-    - name: Сборка и пуш Docker-образа
       uses: docker/build-push-action@v4
       with:
         context: .
         push: true
-        tags: your-docker-username/my_ml_pipeline:latest
+        tags: lawandia/my_ml_pipeline:latest
