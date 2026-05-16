@@ -38,6 +38,8 @@ def train_and_log():
         accuracy = model.score(X_test, y_test)
         print(f"🎯 Accuracy: {accuracy:.4f}")
         
+        os.makedirs("models", exist_ok=True)
+        
         # 3. Сохранение обученной модели (сериализация)
         model_path = "models/model.pkl"
         joblib.dump(model, model_path)
