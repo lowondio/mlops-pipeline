@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest # Выделяется чистый сервер на Linux
     steps:
     - name: Проверка кода из Git
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Настройка Python
       uses: actions/setup-python@v4
@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Проверка кода из Git
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Авторизация в Docker Hub
       uses: docker/login-action@v2
