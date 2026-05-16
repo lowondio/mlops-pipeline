@@ -1,0 +1,11 @@
+pandas
+scikit-learn
+mlflow
+joblib
+pandas
+scikit-learn
+mlflow
+joblib
+fastapi
+uvicorn
+pydantic

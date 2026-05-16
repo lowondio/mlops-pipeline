@@ -1,0 +1,23 @@
+version: '3.8'
+
+services: # Здесь мы перечисляем все наши контейнеры
+
+  # Сервис 1: Панель управления MLflow
+  mlflow-ui:
+    build: . # Собираем образ из нашего существующего Dockerfile
+    command: mlflow ui --backend-store-uri sqlite:///mlruns.db --host 0.0.0.0
+    ports:
+      - "5000:5000" # Пробрасываем порт 5000 из контейнера на твой компьютер
+    volumes:
+      - ./:/app # "Зеркалим" твою текущую папку внутрь контейнера, чтобы он видел базу mlruns.db
+
+  # Сервис 2: Наш сервер инференса
+  api:
+    build: . # Используем тот же самый образ!
+    command: uvicorn src.serve_model:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mlflow-ui # Указываем порядок запуска: API стартует только после MLflow
+    volumes:
+      - ./:/app # Чтобы API видел папку models/ и саму модель
